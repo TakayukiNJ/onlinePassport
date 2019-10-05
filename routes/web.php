@@ -26,3 +26,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Chat機能で追加 2019.10.04
+Route::get('/chat/{recieve}' , 'ChatController@index')->name('chat');
+Route::post('/chat/send' , 'ChatController@store')->name('chatSend');
