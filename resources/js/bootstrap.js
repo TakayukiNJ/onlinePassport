@@ -53,3 +53,12 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+import Echo from "laravel-echo"
+
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: 'f8a7d3c0fcf782795068',
+    cluster: 'ap3',
+    forceTLS: true
+});
