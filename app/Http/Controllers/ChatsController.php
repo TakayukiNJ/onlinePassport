@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Message;
-use Illuminate\Support\Facades\Auth;
 use App\Events\MessageSent;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ChatsController extends Controller
 {
-    //
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware('auth');
@@ -34,23 +38,6 @@ class ChatsController extends Controller
     {
         return Message::with('user')->get();
     }
-
-    /**
-     * Persist message to database
-     *
-     * @param  Request $request
-     * @return Response
-     */
-//    public function sendMessage(Request $request)
-//    {
-//        $user = Auth::user();
-//
-//        $message = $user->messages()->create([
-//            'message' => $request->input('message')
-//        ]);
-//
-//        return ['status' => 'Message Sent!'];
-//    }
 
     /**
      * Persist message to database
