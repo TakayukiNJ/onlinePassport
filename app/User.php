@@ -3,15 +3,11 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
-use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Notifications\CustomVerifyEmail;
-use App\Notifications\CustomResetPassword;
 
-class User extends Authenticatable implements MustVerifyEmailContract
+class User extends Authenticatable
 {
-    use MustVerifyEmail, Notifiable;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -30,24 +26,6 @@ class User extends Authenticatable implements MustVerifyEmailContract
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-
-    public function sendEmailVerificationNotification()
-    {
-        $this->notify(new CustomVerifyEmail());
-    }
-
-    public function sendPasswordResetNotification($token) {
-        $this->notify(new CustomResetPassword($token));
-    }
 
     /**
      * A user can have many messages
